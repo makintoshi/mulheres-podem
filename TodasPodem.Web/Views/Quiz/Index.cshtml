@@ -1,0 +1,229 @@
+﻿@model TodasPodem.Web.Models.QuizViewModel
+
+@{
+    ViewData["Title"] = "Quiz";
+}
+
+<div id="club" class="clubs-area">
+    <div class="container-fluid">
+        <br /><br />
+        <div class="row justify-content-center">
+            <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                    <h2>Cadastre sua escola</h2>
+                    <p>Preencha todas as informações para poder avançar as etapas</p>
+                    <form id="msform" enctype="multipart/form-data" asp-action="Create">
+                        <!-- progressbar -->
+                        <ul id="progressbar">
+                            <li class="active" id="account"><strong>Conta</strong></li>
+                            <li id="fulladdress"><strong>Endereço</strong></li>
+                            <li id="personal"><strong>Comissão técnica</strong></li>
+                            <li id="confirm"><strong>Finalizar</strong></li>
+                        </ul>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div> <br> <!-- fieldsets -->
+                        <fieldset>
+                            <div class="form-card">
+                                <label class="fieldlabels">Selecione o brasão da escola:</label>
+                                <input type="text" name="name" asp-for="Name" placeholder="Informe o nome da escola" />
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" name="identityNumber" asp-for="IdentityNumber" placeholder="Informe o CNPJ da escola" />
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" name="phoneNumber" asp-for="PhoneNumber" placeholder="Informe o telefone da escola" />
+                                    </div>
+                                </div>
+                                <textarea type="text" name="history" rows="4" asp-for="History" placeholder="Conte a história da escola"></textarea>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="email" name="username" asp-for="Username" placeholder="Informe um e-mail" />
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="password" name="password" asp-for="Password" placeholder="Informe uma senha" />
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="button" name="next" class="next action-button" value="Próximo" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <input type="text" name="postalCode" placeholder="Informe o CEP da escola"
+                                       onblur="pesquisaCep(this.value);" />
+
+                                <div class="row">
+                                    <div class="col-9">
+                                        <input id="address" type="text" name="address" asp-for="Address" placeholder="Informe o endereço da escola" />
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" name="number" asp-for="Number" placeholder="Número" />
+                                    </div>
+                                </div>
+
+                                <input type="text" name="complement" asp-for="Complement" placeholder="Informe o complemento se houver" />
+                                <input id="district" type="text" name="district" placeholder="Informe o bairro da escola" />
+
+                                <div class="row">
+                                    <div class="col-9">
+                                        <input id="city" type="text" name="city" asp-for="City" placeholder="Informe a cidade da escola" />
+                                    </div>
+                                    <div class="col-3">
+                                        <input id="state" type="text" name="state" asp-for="State" placeholder="UF" />
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="button" name="next" class="next action-button" value="Próximo" />
+                            <input type="button" name="previous" class="previous action-button-previous" value="Voltar" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <br><br>
+                                <h2 class="text-center"><strong>SUCCESSO</strong></h2> <br>
+                                <div class="row justify-content-center">
+                                    <div class="col-3"> <img src="~/template/assets/img/forms/green-check-mark.png" class="fit-image"> </div>
+                                </div> <br><br>
+                                <div class="row justify-content-center">
+                                    <div class="col-7 text-center">
+                                        <h5 class="text-center">Boa! Agora é só aguardar a aprovação.</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script type='text/javascript'>
+
+        $(document).ready(function () {
+
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var opacity;
+            var current = 1;
+            var steps = $("fieldset").length;
+
+            setProgressBar(current);
+
+            $(".next").click(function () {
+
+                current_fs = $(this).parent();
+                next_fs = $(this).parent().next();
+                window.scrollTo(0, 0);
+
+                //Add Class Active
+                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+                //show the next fieldset
+                next_fs.show();
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        next_fs.css({ 'opacity': opacity });
+                    },
+                    duration: 500
+                });
+                setProgressBar(++current);
+            });
+
+            $(".previous").click(function () {
+
+                current_fs = $(this).parent();
+                previous_fs = $(this).parent().prev();
+
+                //Remove class active
+                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+                //show the previous fieldset
+                previous_fs.show();
+
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        previous_fs.css({ 'opacity': opacity });
+                    },
+                    duration: 500
+                });
+                setProgressBar(--current);
+            });
+
+            function setProgressBar(curStep) {
+                var percent = parseFloat(100 / steps) * curStep;
+                percent = percent.toFixed();
+                $(".progress-bar")
+                    .css("width", percent + "%")
+            }
+
+        });
+
+        function cepCallback(conteudo) {
+            if (!("erro" in conteudo)) {
+                //Atualiza os campos com os valores.
+                document.getElementById('address').value = (conteudo.logradouro);
+                document.getElementById('district').value = (conteudo.bairro);
+                document.getElementById('city').value = (conteudo.localidade);
+                document.getElementById('state').value = (conteudo.uf);
+            } //end if.
+            else {
+                //CEP não Encontrado.
+                alert("CEP não encontrado.");
+            }
+        }
+
+        function pesquisaCep(valor) {
+
+            //Nova variável "cep" somente com dígitos.
+            var cep = valor.replace(/\D/g, '');
+
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+
+                //Valida o formato do CEP.
+                if (validacep.test(cep)) {
+
+                    //Preenche os campos com "..." enquanto consulta webservice.
+                    document.getElementById('address').value = "...";
+                    document.getElementById('district').value = "...";
+                    document.getElementById('city').value = "...";
+                    document.getElementById('state').value = "...";
+
+                    //Cria um elemento javascript.
+                    var script = document.createElement('script');
+
+                    //Sincroniza com o callback.
+                    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=cepCallback';
+
+                    //Insere script no documento e carrega o conteúdo.
+                    document.body.appendChild(script);
+
+                } //end if.
+                else {
+                    alert("Formato de CEP inválido.");
+                }
+            } //end if.
+        };
+    </script>
+}
