@@ -10,14 +10,14 @@
         <div class="row justify-content-center">
             <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                    <h2>Cadastre sua escola</h2>
-                    <p>Preencha todas as informações para poder avançar as etapas</p>
+                    <h2>Entenda seu perfil</h2>
+                    <p>Responda todas as questões para poder avançar as etapas</p>
                     <form id="msform" enctype="multipart/form-data" asp-action="Create">
                         <!-- progressbar -->
                         <ul id="progressbar">
-                            <li class="active" id="account"><strong>Conta</strong></li>
-                            <li id="fulladdress"><strong>Endereço</strong></li>
-                            <li id="personal"><strong>Comissão técnica</strong></li>
+                            <li class="active" id="account"><strong>Parte 1</strong></li>
+                            <li id="fulladdress"><strong>Parte 2</strong></li>
+                            <li id="personal"><strong>Parte 3</strong></li>
                             <li id="confirm"><strong>Finalizar</strong></li>
                         </ul>
                         <div class="progress">
@@ -25,53 +25,181 @@
                         </div> <br> <!-- fieldsets -->
                         <fieldset>
                             <div class="form-card">
-                                <label class="fieldlabels">Selecione o brasão da escola:</label>
-                                <input type="text" name="name" asp-for="Name" placeholder="Informe o nome da escola" />
-                                <div class="row">
-                                    <div class="col-6">
-                                        <input type="text" name="identityNumber" asp-for="IdentityNumber" placeholder="Informe o CNPJ da escola" />
-                                    </div>
-                                    <div class="col-6">
-                                        <input type="text" name="phoneNumber" asp-for="PhoneNumber" placeholder="Informe o telefone da escola" />
-                                    </div>
+                                <p>Ao construir pensamentos e ideias, costumo fundamentá-los em argumentos concretos.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-1" id="question-1-1" type="radio" value="1" />
+                                    <label for="question-1-1" class="form-check-label">Não concordo</label>
                                 </div>
-                                <textarea type="text" name="history" rows="4" asp-for="History" placeholder="Conte a história da escola"></textarea>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-1" id="question-1-2" type="radio" value="2" />
+                                    <label for="question-1-2" class="form-check-label">Concordo parcialmente</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-1" id="question-1-3" type="radio" value="3" />
+                                    <label for="question-1-3" class="form-check-label">Concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-1" id="question-1-4" type="radio" value="4" />
+                                    <label for="question-1-4" class="form-check-label">Concordo plenamente</label>
+                                </div>
+                                <br />
 
-                                <div class="row">
-                                    <div class="col-6">
-                                        <input type="email" name="username" asp-for="Username" placeholder="Informe um e-mail" />
-                                    </div>
-                                    <div class="col-6">
-                                        <input type="password" name="password" asp-for="Password" placeholder="Informe uma senha" />
-                                    </div>
+                                <p>Eu me interesso por planilhas e gráficos e gosto de explicar aos outros.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-2" id="question-2-1" type="radio" value="1" />
+                                    <label for="question-2-1" class="form-check-label">Não concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-2" id="question-2-2" type="radio" value="2" />
+                                    <label for="question-2-2" class="form-check-label">Concordo parcialmente</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-2" id="question-2-3" type="radio" value="3" />
+                                    <label for="question-2-3" class="form-check-label">Concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-2" id="question-2-4" type="radio" value="4" />
+                                    <label for="question-2-4" class="form-check-label">Concordo plenamente</label>
+                                </div>
+                                <br />
+
+                                <p>Tenho facilidade em correlacionar minhas emoções a imagens, cenários e cores.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-3" id="question-3-1" type="radio" value="1" />
+                                    <label for="question-3-1" class="form-check-label">Não concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-3" id="question-3-2" type="radio" value="2" />
+                                    <label for="question-3-2" class="form-check-label">Concordo parcialmente</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-3" id="question-3-3" type="radio" value="3" />
+                                    <label for="question-3-3" class="form-check-label">Concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-3" id="question-3-4" type="radio" value="4" />
+                                    <label for="question-3-4" class="form-check-label">Concordo plenamente</label>
                                 </div>
                             </div>
                             <input type="button" name="next" class="next action-button" value="Próximo" />
                         </fieldset>
                         <fieldset>
                             <div class="form-card">
-                                <input type="text" name="postalCode" placeholder="Informe o CEP da escola"
-                                       onblur="pesquisaCep(this.value);" />
-
-                                <div class="row">
-                                    <div class="col-9">
-                                        <input id="address" type="text" name="address" asp-for="Address" placeholder="Informe o endereço da escola" />
-                                    </div>
-                                    <div class="col-3">
-                                        <input type="text" name="number" asp-for="Number" placeholder="Número" />
-                                    </div>
+                                <p>Prefiro resolver problemas complexos que envolvam números.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-4" id="question-4-1" type="radio" value="1" />
+                                    <label for="question-4-1" class="form-check-label">Não concordo</label>
                                 </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-4" id="question-4-2" type="radio" value="2" />
+                                    <label for="question-4-2" class="form-check-label">Concordo parcialmente</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-4" id="question-4-3" type="radio" value="3" />
+                                    <label for="question-4-3" class="form-check-label">Concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-4" id="question-4-4" type="radio" value="4" />
+                                    <label for="question-4-4" class="form-check-label">Concordo plenamente</label>
+                                </div>
+                                <br/>
 
-                                <input type="text" name="complement" asp-for="Complement" placeholder="Informe o complemento se houver" />
-                                <input id="district" type="text" name="district" placeholder="Informe o bairro da escola" />
+                                <p>Eu costumo viajar para lugares que tenham cachoeiras, praias e montanhas.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-5" id="question-5-1" type="radio" value="1" />
+                                    <label for="question-5-1" class="form-check-label">Não concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-5" id="question-5-2" type="radio" value="2" />
+                                    <label for="question-5-2" class="form-check-label">Concordo parcialmente</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-5" id="question-5-3" type="radio" value="3" />
+                                    <label for="question-5-3" class="form-check-label">Concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-5" id="question-5-4" type="radio" value="4" />
+                                    <label for="question-5-4" class="form-check-label">Concordo plenamente</label>
+                                </div>
+                                <br/>
 
-                                <div class="row">
-                                    <div class="col-9">
-                                        <input id="city" type="text" name="city" asp-for="City" placeholder="Informe a cidade da escola" />
-                                    </div>
-                                    <div class="col-3">
-                                        <input id="state" type="text" name="state" asp-for="State" placeholder="UF" />
-                                    </div>
+                                <p>Tenho facilidade em executar várias tarefas ao mesmo tempo sem necessariamente ter uma rotina.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-6" id="question-6-1" type="radio" value="1" />
+                                    <label for="question-6-1" class="form-check-label">Não concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-6" id="question-6-2" type="radio" value="2" />
+                                    <label for="question-6-2" class="form-check-label">Concordo parcialmente</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-6" id="question-6-3" type="radio" value="3" />
+                                    <label for="question-6-3" class="form-check-label">Concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-6" id="question-6-4" type="radio" value="4" />
+                                    <label for="question-6-4" class="form-check-label">Concordo plenamente</label>
+                                </div>
+                            </div>
+                            <input type="button" name="next" class="next action-button" value="Próximo" />
+                            <input type="button" name="previous" class="previous action-button-previous" value="Voltar" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <p>Eu gosto de escrever e sensibilizar o outro através de palavras.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-7" id="question-7-1" type="radio" value="1" />
+                                    <label for="question-7-1" class="form-check-label">Não concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-7" id="question-7-2" type="radio" value="2" />
+                                    <label for="question-7-2" class="form-check-label">Concordo parcialmente</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-7" id="question-7-3" type="radio" value="3" />
+                                    <label for="question-7-3" class="form-check-label">Concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-7" id="question-7-4" type="radio" value="4" />
+                                    <label for="question-7-4" class="form-check-label">Concordo plenamente</label>
+                                </div>
+                                <br />
+
+                                <p>Prefiro atuar na criação ao invés da execução de uma tarefa.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-8" id="question-8-1" type="radio" value="1" />
+                                    <label for="question-8-1" class="form-check-label">Não concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-8" id="question-8-2" type="radio" value="2" />
+                                    <label for="question-8-2" class="form-check-label">Concordo parcialmente</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-8" id="question-8-3" type="radio" value="3" />
+                                    <label for="question-8-3" class="form-check-label">Concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-8" id="question-8-4" type="radio" value="4" />
+                                    <label for="question-8-4" class="form-check-label">Concordo plenamente</label>
+                                </div>
+                                <br />
+
+                                <p>Prefiro expressar o meu ponto de vista de maneira mais ponderada e comedida.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-9" id="question-9-1" type="radio" value="1" />
+                                    <label for="question-9-1" class="form-check-label">Não concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-9" id="question-9-2" type="radio" value="2" />
+                                    <label for="question-9-2" class="form-check-label">Concordo parcialmente</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-9" id="question-9-3" type="radio" value="3" />
+                                    <label for="question-9-3" class="form-check-label">Concordo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="question-9" id="question-9-4" type="radio" value="4" />
+                                    <label for="question-9-4" class="form-check-label">Concordo plenamente</label>
                                 </div>
                             </div>
                             <input type="button" name="next" class="next action-button" value="Próximo" />
@@ -86,9 +214,10 @@
                                 </div> <br><br>
                                 <div class="row justify-content-center">
                                     <div class="col-7 text-center">
-                                        <h5 class="text-center">Boa! Agora é só aguardar a aprovação.</h5>
+                                        <h5 class="text-center">De acordo com suas respostas sua trilha é: Tecnologia</h5>
                                     </div>
                                 </div>
+                                <input type="button" name="subscribe" class="next action-button" value="Inscreva-se" />
                             </div>
                         </fieldset>
                     </form>

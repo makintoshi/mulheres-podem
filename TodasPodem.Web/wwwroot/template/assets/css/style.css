@@ -696,7 +696,7 @@ p {
     display: none
 }
 
-#msform input,
+#msform input[type=text],
 #msform textarea {
     padding: 8px 15px 8px 15px;
     border: 1px solid #ccc;
